@@ -9,15 +9,15 @@ buildCard = (member) => {
   switch (position) {
     case "Manager":
       const { officeNumber } = member;
-      cards += "\n" + `<div class="card" id="manager" style="width: 18rem;">
+      cards += "\n" + `<div class="card" id="manager" style="width: 20rem;">
       <div class="card-header p-4">
       <h2>${name}</h2>
-      <h4><i class="fas fa-mug-hot"></i>Manager<h4>
+      <h4><i class="fas fa-mug-hot"></i>   Manager<h4>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Id: ${id}</li>
         <li class="list-group-item">Email: <a href=mailto:${email}>${email}</a></li>
-        <li class="list-group-item">office Number: ${officeNumber}</li>
+        <li class="list-group-item">office number: ${officeNumber}</li>
       </ul>
       </div>`;
       break;
@@ -25,7 +25,7 @@ buildCard = (member) => {
 
     case "Engineer":
       const { github } = member;
-      cards += "\n" + `<div class="card" style="width: 18rem;">
+      cards += "\n" + `<div class="card" id="engineer" style="width: 20rem;">
       <div class="card-header p-4">
       <h2>${name}</h2>
       <h4><i class="fas fa-glasses"></i>   Engineer<h4>
@@ -41,7 +41,7 @@ buildCard = (member) => {
 
     case "Intern":
       const { school } = member;
-      cards += "\n" + `<div class="card" style="width: 18rem;">
+      cards += "\n" + `<div class="card" id="intern" style="width: 20rem;">
       <div class="card-header p-4">
       <h2>${name}</h2>
       <h4><i class="fas fa-user-graduate"></i>   Intern<h4>
@@ -64,7 +64,6 @@ buildCard = (member) => {
 
 // breaks up the teammember arrays and call for each object to have a card
 roleCard = (teamArray) => {
-  console.log("roleCard teamArray " + teamArray);
   const [manager, engineerArray, internArray] = teamArray;
   // build manager card
   buildCard(manager);
@@ -104,7 +103,6 @@ startHtml = () => {
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="/style.css">
         <title>Main</title>
     </head>
     <body>
@@ -144,39 +142,35 @@ startHtml = () => {
       .header{
       width: 100%;
       text-align: center;
-      padding: 7%;
-      background-color: var(--jdarkred);
+      padding: 3%;
+      background-color: var(--jblack);
       color: var(--jwhite);
-      border: 1px solid var(--jdarkred);
       margin-bottom: 30px;
-      clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0% 75%, 0 0);
       }
-    
+
       .card{
       margin-top: 20px;
       margin-right: 20px;
       margin-left: 20px;
       background-color: var(--joffwhite);
+      border-radius: 5px;
       }
 
-      #manager{
-      color: var(--jdarkred);
-      border: 1px solid var(--jdarkred);
+      #manager .card-header{
+        background-color: var(--jdarkred);
       }
     
-      #engineer{
-      color: var(--jdarkyellow);
-      border: 1px solid var(--jdarkyellow);
+      #engineer .card-header{
+      background-color: var(--jdarkyellow);
       }
 
-      #engineer{
-      color: var(--jdarkgreen);
-      border: 1px solid var(--jdarkgreen);
+      #intern .card-header{
+      background-color: var(--jdarkgreen);
       }
 
-      .card ul li, .card-header{
+      .card ul li{
+      border: 0px;
       background-color: var(--joffwhite);
-      border-bottom: 1px solid var(--jdarkgray);
       }
     
       .footer{
@@ -188,7 +182,6 @@ startHtml = () => {
  
       ${cards}
     
- 
       <div class="footer"></div>  
  </body>
  </html>`

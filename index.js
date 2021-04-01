@@ -28,7 +28,7 @@ managerPrompt = () => {
     },
     {
         type: "input",
-        name: "OfficeNumber",
+        name: "officeNumber",
         message: "office number:"
     },
     {
@@ -58,8 +58,8 @@ buildTeam = () => {
 
     return inquirer.prompt([
         {
-            type: 'list',
-            name: 'role',
+            type: "list",
+            name: "role",
             message: "role:",
             choices: ["engineer", "intern"]
         },
@@ -78,25 +78,25 @@ buildTeam = () => {
             name: "email",
             message: "email:"
         },
-        {
-            type: "confirm",
-            name: "confirm",
-            message: "Another team member?",
-            default: false
-        }])
+        ])
         .then(({ name, id, email, role }) => {
-            console.log("switch role " + role);
             switch (role) {
                 case "engineer":
                     return inquirer.prompt([{
                         type: "text",
                         name: "github",
                         message: "Github username:"
+                    },
+                    {
+                        type: "confirm",
+                        name: "confirm",
+                        message: "Another team member?",
+                        default: false
                     }])
                         .then(({ github, confirm }) => {
                             // new Engineer object
                             const engineer = new Engineer(name, id, email, github);
-
+                            
                             engineerArray.push(engineer);
                             if (confirm) {
                                 buildTeam();
@@ -113,6 +113,12 @@ buildTeam = () => {
                             type: "text",
                             name: "school",
                             message: "school:"
+                        },
+                        {
+                            type: "confirm",
+                            name: "confirm",
+                            message: "Another team member?",
+                            default: false
                         }])
                         .then(({ school, confirm }) => {
                             // create a new Intern object
